@@ -104,12 +104,8 @@ export class MessageParserService {
 
         if(!chatMessage.includes(" : ")){
             const chatMessageToParse = chatMessage.split(" ");
-
-            console.log(chatMessageToParse.length);
             
             chatMessageToParse.forEach(((word, index) => {
-
-                console.log("index: ", index);
 
                 switch(index){
                     case 0:
