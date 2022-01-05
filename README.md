@@ -28,6 +28,73 @@ This is a simple nest application that is able to parse array of strings, into a
 
 You can put array of string chat messages as a body of a post request to the address: "http://localhost:3090/messageParser", that will parse the chat messages correctly, following the services logic.
 
+With chat messages like (use these examples to test properly as well):
+
+```bash
+1- ["14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
+2- ["14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "14:26:15 Agent : Aliquam non cursus erat, ut blandit lectus."]
+3- ["14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.14:26:15 Agent : I received it at 12:24:48, ut blandit lectus."]
+4- ["14:24:32 Customer : Lorem ipsum dolor sit amet, consectetur adipiscing elit.14:26:15 Agent : Aliquam non cursus erat, ut blandit lectus."]
+```
+
+parsed results will be:
+
+```bash
+1- [
+    {
+      date: '14:24:32',
+      mention: '14:24:32 Customer',
+      sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      type: 'Customer'
+    }
+  ]
+
+2- [
+    {
+      date: '14:24:32',
+      mention: '14:24:32 Customer',
+      sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      type: 'Customer'
+    },
+    {
+      date: '14:26:15',
+      mention: '14:26:15 Agent',
+      sentence: 'Aliquam non cursus erat, ut blandit lectus.',
+      type: 'Agent'
+    }
+  ]
+
+3- [
+    {
+      date: '14:24:32',
+      mention: '14:24:32 Customer',
+      sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      type: 'Customer'
+    },
+    {
+      date: '14:26:15',
+      mention: '14:26:15 Agent',
+      sentence: 'I received it at 12:24:48, ut blandit lectus.',
+      type: 'Agent'
+    }
+  ]
+
+4- [
+    {
+      date: '14:24:32',
+      mention: '14:24:32 Customer',
+      sentence: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      type: 'Customer'
+    },
+    {
+      date: '14:26:15',
+      mention: '14:26:15 Agent',
+      sentence: 'Aliquam non cursus erat, ut blandit lectus.',
+      type: 'Agent'
+    }
+  ]
+```
+
 ## Installation
 
 ```bash
@@ -45,10 +112,10 @@ After initialized node_modules, you can start the application following the pack
 ```bash
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
 Nest is [MIT licensed](LICENSE).
