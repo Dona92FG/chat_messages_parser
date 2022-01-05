@@ -33,7 +33,7 @@ export class MessageParserService {
 
     parseChatMessage(chatMessage: string): JsonChatMessageDto {
 
-        const chatMessageSplitted = chatMessage.split(" : ");
+        const chatMessageSplitted = this.getSplittedChatMessage(chatMessage);
         const firstPartChatMessage = chatMessageSplitted[0].split(" ");
 
         const userType = this.getUserType(firstPartChatMessage);
@@ -95,6 +95,50 @@ export class MessageParserService {
         }
 
         return chatMessage;
+
+    }
+
+    getSplittedChatMessage(chatMessage: string): string[] {
+
+        let chatMessageSplitted: string[] = ["", ""];
+
+        if(!chatMessage.includes(" : ")){
+            const chatMessageToParse = chatMessage.split(" ");
+
+            console.log(chatMessageToParse.length);
+            
+            chatMessageToParse.forEach(((word, index) => {
+
+                console.log("index: ", index);
+
+                switch(index){
+                    case 0:
+                        chatMessageSplitted[0] = chatMessageSplitted[0] + word + " "
+                        break;
+                    case 1:
+                        word.valueOf() === "Consumer" || word.valueOf() === "Agent" 
+                            ? chatMessageSplitted[0] = chatMessageSplitted[0] + word + "" 
+                            : chatMessageSplitted[0] = chatMessageSplitted[0] + word + " " 
+                        break;
+                    case 2:
+                        chatMessageSplitted[0].charAt(chatMessageSplitted[0].length - 1) == " "
+                            ? chatMessageSplitted[0] = chatMessageSplitted[0] + word + ""
+                            : chatMessageSplitted[1] = chatMessageSplitted[1] + word + ""
+                        break;    
+                    default:
+                        index !== (chatMessageToParse.length - 1)
+                            ? chatMessageSplitted[1] = chatMessageSplitted[1] + word + " "
+                            : chatMessageSplitted[1] = chatMessageSplitted[1] + word + ""
+                        break;        
+                }
+
+            }))
+            
+        } else {
+            chatMessageSplitted = chatMessage.split(" : ");           
+        }
+
+        return chatMessageSplitted;
 
     }
 
