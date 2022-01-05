@@ -24,19 +24,25 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a simple nest application that is able to parse array of strings, into array of objects chat messages.
+
+You can put array of string chat messages as a body of a post request to the address: "http://localhost:3090/messageParser", that will parse the chat messages correctly, following the services logic.
 
 ## Installation
 
 ```bash
-$ npm install
+Please use yarn as a dependecy manager to initialize node_modules.
+
+Please use the command "yarn" via bash shell or which one you prefer.
 ```
 
 ## Running the app
 
+After initialized node_modules, you can start the application following the package.json scripts, with these two commands:
+
+(I prefere watch mode execution in order to be able to change code without restarting the application)
+
 ```bash
-# development
-$ npm run start
 
 # watch mode
 $ npm run start:dev
@@ -45,31 +51,4 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
 Nest is [MIT licensed](LICENSE).
-
-STEP 1, 2, 3
